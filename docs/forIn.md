@@ -1,5 +1,7 @@
 ## for ... in
 
+> 2020.03.15
+
 ### Syntax
 
 ```javascript
