@@ -51,5 +51,9 @@ obj1.print(2); // 3
 针对入参数文中使用的是 `...` 收集参数，也可以考虑使用函数自带的 `arguments`，当然考虑到这是一个类数组类型，需要一次转化为数组的操作
 
 ```javascript
-const argumentList = Array.prototype.slice.call(arguments);
+const argList = Array.prototype.slice.apply(arguments);
+
+// 这里用bind封装一个可直接调用的函数来处理类数组的转换
+const slice = Function.prototype.apply.bind(Array.prototype.slice);
+const argList = slice(arguments);
 ```
