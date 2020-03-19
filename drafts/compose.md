@@ -15,15 +15,17 @@ export default function compose(...funcs) {
     return funcs[0]
   }
 
-  return funcs.reduce((a, b) => (...args) => a(b(...args)))
-  /* 
-  // 这里进行一下改写及补充，便于理解
-  funcs.reduce((a, b) => {
+  // 这里对原码进行了一定的扩展补充，便于理解功能实现 
+  // return funcs.reduce((a, b) => (...args) => a(b(...args)))
+  return funcs.reduce((a, b) => {
+    // 返回一个函数，所以 a 是之前所有迭代函数的累积
     return (...args) => {
+      // 支持接受若干参数
+      // 第一步将参数作为入参给到当前迭代函数 b，并执行
+      // 第二部将 b 执行的结果作为入参给到累积的函数 a，即把当前迭代函数加入到累积中
       return a(b(...args));
     }
-  }) 
-  */
+  }
 }
 ```
 
