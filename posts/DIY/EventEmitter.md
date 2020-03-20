@@ -124,3 +124,42 @@ this.once = function (event, fn) {
   this.on(event, _fn);
 };
 ```
+
+### Example
+
+```javascript
+const bus = new EventEmitter();
+const obj1 = {
+  count: 1,
+  fn: function () {
+    console.log(`obj1 ${this.count}`);
+  }
+}
+const obj2 = {
+  count: 2,
+  fn: function () {
+    console.log(`obj2 ${this.count}`);
+  }
+}
+bus.once('fn', obj1.fn);
+bus.on('fn', obj1.fn);
+bus.on('fn', obj2.fn.bind(obj2));
+
+bus.emit('fn');
+// obj1 undefined
+// obj1 undefined
+// obj2 2
+
+bus.emit('fn');
+// obj1 undefined
+// obj2 2
+```
+
+上述例子中可以看出几个很明显的点：
+
+1. 一次性注册(`once`)的事件响应函数和普通注册(`on`)的响应函数是同一个，但因为只有 `once` 的响应函数被移除了，说明内部注册时使用的 `fn` 其实是不一样的；
+2. 注册的响应函数不包含执行上下文，可以很明显看到 `obj1.fn` 这个响应函数没有如预期打印 `obj1 1`，而只有显示绑定 `obj2.fn.bind(obj2)` 才正常如期打印结果；
+
+### Summary
+
+事件的监听与触发可以归类为一种常用的设计模式 —— **订阅发布模式**，有趣的设计模式还有很多，后面一一详解。
