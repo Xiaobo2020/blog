@@ -1,5 +1,7 @@
 ## EventEmitter
 
+> 2020.03.21
+
 事件监听在开发过程中被广泛应用，如 `Vue` 中常用的 `vm.$on` 和 `vm.$emit` 就是自己实现了一套事件监听逻辑挂载到了 `Vue` 原型上。
 
 ### Realization
