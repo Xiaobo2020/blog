@@ -4,7 +4,7 @@
 
 `compose` 有合成、组合的意思，它的存在其实是服务于中间件的，即当我们使用 `applyMiddleware` 实现功能增强的背后，其实就是利用了 `compose` 函数将这多个增强函数进行合理的组合。
 
-### Source Time
+### Source Code
 ```javascript
 export default function compose(...funcs) {
   if (funcs.length === 0) {
@@ -36,7 +36,7 @@ export default function compose(...funcs) {
 1. 当 `funcs` 数组中没有函数，即为一个空数组时，传入什么，传出什么，没有操作。
 2. 当 `funcs` 数组中有一个函数时，返回这个函数。
 3. 当有多个函数的时候，`funcs` 会调用 `reduce` 方法，将多个函数嵌套，这里值得反复推敲，理解 `reduce` 到底如何实现功能的。
-4. 多个函数嵌套执行存在一个先后顺序，即越是前面的函数入参，越是靠后执行。
+4. 多个函数嵌套执行存在一个先后顺序，即越是前面的函数入参，越是靠前执行。
 
 ### Example
 
