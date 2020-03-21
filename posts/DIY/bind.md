@@ -57,3 +57,8 @@ const argList = Array.prototype.slice.apply(arguments);
 const slice = Function.prototype.apply.bind(Array.prototype.slice);
 const argList = slice(arguments);
 ```
+
+## Link
+
++ [上一篇：**forEach (DIY)**](./forEach.md)
++ [下一篇：**防抖(debounce)和节流(throttling)**](../防抖和节流.md)
