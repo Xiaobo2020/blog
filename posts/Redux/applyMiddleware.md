@@ -86,3 +86,6 @@ function logger({getState}) {   // line 1
 
 可能第一次阅读 `applyMiddleware` 或者 `logger` 的源码会感觉非常费解，多个函数嵌套，每层都接收点参数，为什么要这么麻烦，这里不得不提到一个概念 **柯里化**，感兴趣的可以看看这篇文章：[详解JS函数柯里化](https://www.jianshu.com/p/2975c25e4d71)，网上也有很多，可自行搜索查看。
 
+## Link
+
++ [上一篇：**Redux源码 —— compose**](../DIY/EventEmitter.md)

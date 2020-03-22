@@ -169,3 +169,4 @@ bus.emit('fn');
 ## Link
 
 + [上一篇：**Redux源码 —— compose**](../Redux/compose.md)
++ [下一篇：**Redux源码 —— applyMiddleware**](../Redux/applyMiddleware.md)
