@@ -121,5 +121,5 @@ if (!Array.prototype.forEach) {
 
 ## Link
 
-+ [上一篇：**for ... in**](../forIn.md)
-+ [下一篇：**执行上下文的绑定 —— bind (DIY)**](./bind.md)
++ [上一篇：**for ... in**](../Syntax/forIn.md)
++ [下一篇：**执行上下文的绑定 —— bind (DIY)**](../DIY/bind.md)

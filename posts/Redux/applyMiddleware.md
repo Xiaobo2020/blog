@@ -88,4 +88,4 @@ function logger({getState}) {   // line 1
 
 ## Link
 
-+ [上一篇：**Redux源码 —— compose**](../DIY/EventEmitter.md)
++ [上一篇：**事件的监听 —— EventEmitter (DIY)**](../DIY/EventEmitter.md)

@@ -70,5 +70,5 @@ func4(data); // -> multi2(add(1)) = 2 * (1 + 1) = 4
 
 ## Link
 
-+ [上一篇：**防抖(debounce)和节流(throttling)**](../防抖和节流.md)
++ [上一篇：**防抖(debounce)和节流(throttling) (DIY)**](../DIY/防抖和节流.md)
 + [下一篇：**事件的监听 —— EventEmitter (DIY)**](../DIY/EventEmitter.md)

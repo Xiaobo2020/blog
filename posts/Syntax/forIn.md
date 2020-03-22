@@ -148,4 +148,4 @@ traversal(obj);
 
 ## Link
 
-+ [下一篇：**forEach (DIY)**](./DIY/forEach.md)
++ [下一篇：**forEach (DIY)**](../DIY/forEach.md)
