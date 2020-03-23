@@ -89,3 +89,4 @@ function logger({getState}) {   // line 1
 ## Link
 
 + [上一篇：**事件的监听 —— EventEmitter (DIY)**](../DIY/EventEmitter.md)
++ [下一篇：**改变上下文的指向 —— call (DIY)**](../DIY/call.md)
