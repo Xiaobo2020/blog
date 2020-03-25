@@ -46,3 +46,4 @@ obj1.print.myCall(obj2, 'called in obj2'); // 2 called in obj2
 ## Link
 
 + [上一篇：**Redux源码 —— applyMiddleware**](../Redux/applyMiddleware.md)
++ [下一篇：**事件循环机制 —— Event Loop**](../Others/EventLoop.md)
