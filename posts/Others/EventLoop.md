@@ -67,8 +67,8 @@ t.then(() => {
 
 在对上述进行分析我们还是需要进行一下概念的确立：
 
-1. `tasks`：指常规的异步任务，如 `setTimeout`，一次click操作等等；
-2. `microtasks`：指穿插于执行栈重新装填、无 `JavaScript` 执行中的状态下可以执行的任务，如 `Promise` 的 `then` 方法。
+1. `tasks`：指常规的异步任务，如 `setTimeout`、`setInterval`、UI rending或一次click操作等等；
+2. `microtasks`：指穿插于执行栈重新装填、无 `JavaScript` 执行中的状态下可以执行的任务，如 `Promise` 的 `then` 方法、`process.nextTick`、`MutationObserver` 等。
 
 如果需要为同步任务、microtasks、tasks这三者排个顺序，那么应该是这样的：执行栈中的同步任务 - 同步任务中包含的microtasks - 同步任务中包含的tasks。
 
