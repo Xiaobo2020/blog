@@ -9,6 +9,7 @@
  * @return {number[]}
  */
 var twoSum1 = function(nums, target) {
+  // O(n^2)
   let i = 0, j = 1;
   for (i = 0; i < nums.length - 1; i++) {
     for (j = i + 1; j <= nums.length - 1; j++) {
@@ -19,3 +20,17 @@ var twoSum1 = function(nums, target) {
   };
   return [];
 };
+
+var twoSum2 = function (nums, target) {
+  // O(n)
+  for (let i = 0; i < nums.length - 1; i++) {
+    const v = nums[i];
+    const j = nums.indexOf(target - v, i + 1);
+    if (j !== -1) {
+      return [i, j];
+    }
+  }
+  return [];
+}
+
+console.log(twoSum2([-3,4,3,90], 0));
