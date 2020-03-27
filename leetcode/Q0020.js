@@ -10,5 +10,35 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-
+  if (s.length % 2 === 1) {
+    return false;
+  }
+  const dict = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+  };
+  const stack = [];
+  const ret = s.split('').reduce((acc, cur) => {
+    if (!acc) {
+      // 已经确定不匹配
+      return acc;
+    }
+    if (cur === '(' || cur === '[' || cur === '{') {
+      // 进栈
+      stack.push(cur);
+      return acc;
+    } else {
+      // 出栈校验
+      return dict[stack.pop()] === cur;
+    }
+  }, true);
+  return ret && stack.length === 0;
 };
+
+console.log(isValid(''));
+console.log(isValid('['));
+console.log(isValid('[]'));
+console.log(isValid('[[]]'));
+console.log(isValid('[[]{}]'));
+console.log(isValid('[[]{}'));
