@@ -36,9 +36,38 @@ var isValid = function(s) {
   return ret && stack.length === 0;
 };
 
-console.log(isValid(''));
-console.log(isValid('['));
-console.log(isValid('[]'));
-console.log(isValid('[[]]'));
-console.log(isValid('[[]{}]'));
-console.log(isValid('[[]{}'));
+var isValid2 = function (s) {
+  let prevS = s;
+  s = s.replace(/\{\}|\[\]|\(\)/g, '');
+  while(s !== prevS) {
+    prevS = s;
+    s = s.replace(/\{\}|\[\]|\(\)/g, '');
+  }
+  return s.length === 0;
+}
+
+var isValid = function (s){
+  const len = s.length;
+  if (len % 2) return false;
+  const stack = [];
+  const dict = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+  };
+  for (let i = 0; i < len; i++) {
+    switch(s[i]) {
+      case '(':
+      case '[':
+      case '{':
+        stack.push(s[i]);
+        break;
+      case ')':
+      case ']':
+      case '}':
+        if (dict[stack.pop()] !== s[i]) return false;
+        break;
+    }
+  }
+  return stack.length === 0;
+}
