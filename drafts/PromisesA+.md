@@ -28,3 +28,23 @@
 #### `then` 方法
 
 一个 promise 必须要提供一个 `then` 方法来访问其当前或最终的 value 或者 reason。
+
+一个 promise 的 `then` 方法接受两个参数：
+
+```javascript
+promise.then(onFulfilled, onRejected)
+```
+
+1. `onFulfilled` 和 `onRejected` 都是可选参数：
+    1. 如果 `onFulfilled` 不是一个函数，那么它会被忽略；
+    2. 如果 `onRejected` 不是一个函数，那么它会被忽略；
+2. 如果 `onFulfilled` 是一个函数：
+3. 如果 `onRejected` 是一个函数：
+4. 当执行栈中还存在其他同步任务时，`onFulfilled` 或者 `onRejected` 不能被调用；
+5. `onFulfilled` 和 `onRejected` 必须被作为函数来被调用；
+6. 在相同的 promise 中，`then` 方法可以被多次调用：
+7. `then` 方法必须返回一个 promise:
+    1. 如果
+```javascript
+promise2 = promise1.then(onFulfilled, onRejected)
+```
