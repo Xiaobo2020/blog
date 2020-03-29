@@ -1,5 +1,7 @@
 ## createStore (Redux)
 
+> 2020.03.29
+
 ### Source Code
 
 ```javascript
