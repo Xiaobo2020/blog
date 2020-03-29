@@ -87,3 +87,4 @@ t.then(() => {
 ## Link
 
 + [上一篇：**改变上下文指向 —— call (DIY)**](../DIY/call.md)
++ [下一篇：**Redux源码 —— createStore**](../Redux/createStore.md)
