@@ -36,15 +36,27 @@ promise.then(onFulfilled, onRejected)
 ```
 
 1. `onFulfilled` 和 `onRejected` 都是可选参数：
-    1. 如果 `onFulfilled` 不是一个函数，那么它会被忽略；
-    2. 如果 `onRejected` 不是一个函数，那么它会被忽略；
+    1. 如果 `onFulfilled` 不是一个函数，那么它会被忽略。
+    2. 如果 `onRejected` 不是一个函数，那么它会被忽略。
 2. 如果 `onFulfilled` 是一个函数：
+    1. 必须在 promise 状态更新为 fulfilled 后被调用，且将 `promise` 的 value 作为第一个入参。
+    2. 在 promise 状态更新为 fulfilled 之前不可被调用。
+    3. 只能被调用一次。
 3. 如果 `onRejected` 是一个函数：
+    1. 必须在 promise 状态更新为 rejected 后被调用，且将 `promise` 的 reason 作为第一个入参。
+    2. 在 promise 状态更新为 rejected 之前不可被调用。
+    3. 只能被调用一次。
 4. 当执行栈中还存在其他同步任务时，`onFulfilled` 或者 `onRejected` 不能被调用；
 5. `onFulfilled` 和 `onRejected` 必须被作为函数来被调用；
 6. 在相同的 promise 中，`then` 方法可以被多次调用：
+    1. 如果或者当 promise 是 fulfilled 状态，所有各自的 `onFulfilled` 回调函数必须按照对原始 `then` 方法调用的顺序顺序执行。
+    2. 如果或者当 promise 是 rejected 状态，所有各自的 `onRejected` 回调函数必须按照对原始 `then` 方法调用的顺序顺序执行。 
 7. `then` 方法必须返回一个 promise:
-    1. 如果
+    1. 如果 `onFulfilled` 或者 `onRejected` 返回了一个 value `x`，执行 promise 结果处理程序 `[[Resolve]](promise2, x)`。
+    2. 如果 `onFulfilled` 或者 `onRejected` 抛出了一个 exception `e`，`promise2` 必须以 `e` 为 reason 被 rejected。
+    3. 如果 `onFulfilled` 不是一个函数且 `promise1` 是 fulfilled 状态，`promise2` 必须是 fufilled 状态且有和 `promise1` 相同的 value。
+    4. 如果 `onRejected` 不死一个函数且 `promise1` 是 rejected 状态，`promise2` 必须是 rejected 状态且有和 `promise1` 相同的 reason。
+
 ```javascript
 promise2 = promise1.then(onFulfilled, onRejected)
 ```
