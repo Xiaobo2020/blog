@@ -1,5 +1,7 @@
 ## Promise A+ 规范
 
+> 2020.03.30
+
 ### 术语
 
 1. "promise" 是具有 `then` 方法的对象或函数，其行为遵守本规范。
@@ -52,7 +54,7 @@ promise.then(onFulfilled, onRejected)
     1. 如果或者当 promise 是 fulfilled 状态，所有各自的 `onFulfilled` 回调函数必须按照对原始 `then` 方法调用的顺序顺序执行。
     2. 如果或者当 promise 是 rejected 状态，所有各自的 `onRejected` 回调函数必须按照对原始 `then` 方法调用的顺序顺序执行。 
 7. `then` 方法必须返回一个 promise:
-    1. 如果 `onFulfilled` 或者 `onRejected` 返回了一个 value `x`，执行 promise 结果处理程序 `[[Resolve]](promise2, x)`。
+    1. 如果 `onFulfilled` 或者 `onRejected` 返回了一个 value `x`，执行 promise 处理程序 `[[Resolve]](promise2, x)`。
     2. 如果 `onFulfilled` 或者 `onRejected` 抛出了一个 exception `e`，`promise2` 必须以 `e` 为 reason 被 rejected。
     3. 如果 `onFulfilled` 不是一个函数且 `promise1` 是 fulfilled 状态，`promise2` 必须是 fufilled 状态且有和 `promise1` 相同的 value。
     4. 如果 `onRejected` 不死一个函数且 `promise1` 是 rejected 状态，`promise2` 必须是 rejected 状态且有和 `promise1` 相同的 reason。
@@ -60,3 +62,6 @@ promise.then(onFulfilled, onRejected)
 ```javascript
 promise2 = promise1.then(onFulfilled, onRejected)
 ```
+
+#### Promise 处理程序
+
