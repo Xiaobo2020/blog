@@ -1,21 +1,16 @@
 function CPromise (executor) {
   this.status = 'pending';
-  this.value;
-  this.reason;
+  this.data;
 
-  const resolve = (v) => {
+  const toggle = (status) => (data) => {
     if (this.status === 'pending') {
-      this.status = 'fulfilled';
-      this.value = v;
+      // 一次性状态翻转
+      this.status = status;
+      this.data = data;
     }
-  };
-
-  const reject = (r) => {
-    if (this.status === 'pending') {
-      this.status = 'rejected';
-      this.reason = r;
-    }
-  };
+  }
+  const resolve = toggle('fulfilled');
+  const reject = toggle('rejected');
 
   try {
     executor(resolve, reject);
@@ -29,7 +24,7 @@ CPromise.prototype.then = function (onfulfilled, onrejected) {
     if (typeof onfulfilled === 'function') {
       let v;
       try {
-        v = onfulfilled(this.value);
+        v = onfulfilled(this.data);
         if (v instanceof CPromise || v instanceof Promise) {
           return v;
         } else {
@@ -39,13 +34,13 @@ CPromise.prototype.then = function (onfulfilled, onrejected) {
         return new CPromise((resolve, reject) => reject(e));
       }
     } else {
-      return new CPromise((resolve, reject) => resolve(this.value));
+      return new CPromise((resolve, reject) => resolve(this.data));
     }
   } else if (this.status === 'rejected') {
     if (typeof onrejected === 'function') {
       let r;
       try {
-        r = onrejected(this.reason);
+        r = onrejected(this.data);
         if (r instanceof CPromise || r instanceof Promise) {
           return r;
         } else {
@@ -55,7 +50,7 @@ CPromise.prototype.then = function (onfulfilled, onrejected) {
         return new CPromise((resolve, reject) => reject(e));
       }
     } else {
-      return new CPromise((resolve, reject) => reject(this.reason));
+      return new CPromise((resolve, reject) => reject(this.data));
     }
   } else {
     // TODO
