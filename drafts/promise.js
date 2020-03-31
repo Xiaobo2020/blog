@@ -30,7 +30,7 @@ CPromise.prototype.then = function (onfulfilled, onrejected) {
       let v;
       try {
         v = onfulfilled(this.value);
-        if (v instanceof CPromise) {
+        if (v instanceof CPromise || v instanceof Promise) {
           return v;
         } else {
           return new CPromise((resolve, reject) => resolve(v));
@@ -46,7 +46,7 @@ CPromise.prototype.then = function (onfulfilled, onrejected) {
       let r;
       try {
         r = onrejected(this.reason);
-        if (r instanceof CPromise) {
+        if (r instanceof CPromise || r instanceof Promise) {
           return r;
         } else {
           return new CPromise((resolve, reject) => resolve(r));
@@ -74,7 +74,7 @@ promise
   .then(
     (res) => {
       console.log('onfulfilled1', res);
-      return new CPromise((resolve, reject) => reject('Hello'));
+      return new Promise((resolve, reject) => reject('Hello'));
     },
     (err) => console.log('onrejected1', err)
   )
