@@ -27,33 +27,33 @@ function CPromise (executor) {
 CPromise.prototype.then = function (onfulfilled, onrejected) {
   if (this.status === 'fulfilled') {
     if (typeof onfulfilled === 'function') {
-      if (onfulfilled(this.value) instanceof CPromise) {
-        return onfulfilled(this.value).then();
-      }
-      return new CPromise((resolve, reject) => {
-        try {
-          const v = onfulfilled(this.value);
-          resolve(v);
-        } catch (e) {
-          reject(e);
+      let v;
+      try {
+        v = onfulfilled(this.value);
+        if (v instanceof CPromise) {
+          return v;
+        } else {
+          return new CPromise((resolve, reject) => resolve(v));
         }
-      });
+      } catch (e) {
+        return new CPromise((resolve, reject) => reject(e));
+      }
     } else {
       return new CPromise((resolve, reject) => resolve(this.value));
     }
   } else if (this.status === 'rejected') {
     if (typeof onrejected === 'function') {
-      if (onrejected() instanceof CPromise) {
-        return onrejected();
-      }
-      return new CPromise((resolve, reject) => {
-        try {
-          const v = onrejected(this.reason);
-          resolve(v);
-        } catch (e) {
-          reject(e);
+      let r;
+      try {
+        r = onrejected(this.reason);
+        if (r instanceof CPromise) {
+          return r;
+        } else {
+          return new CPromise((resolve, reject) => resolve(r));
         }
-      });
+      } catch (e) {
+        return new CPromise((resolve, reject) => reject(e));
+      }
     } else {
       return new CPromise((resolve, reject) => reject(this.reason));
     }
