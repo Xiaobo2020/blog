@@ -19,45 +19,41 @@ function CPromise (executor) {
   }
 }
 
+// 暂时只处理 fulfilled 和 rejected
+const nextPromiseGenerator = (data) => (status) => (handler) => {
+  if (typeof handler === 'function') {
+    let v;
+    try {
+      v= handler(data);
+      if (v instanceof CPromise || v instanceof Promise) {
+        return v;
+      } else {
+        return new CPromise((resolve, reject) => resolve(v));
+      }
+    } catch (e) {
+      return new CPromise((resolve, reject) => reject(e));
+    }
+  } else {
+    return new CPromise((resolve, reject) => {
+      if (status === 'fulfilled') {
+        resolve(data);
+      } else {
+        reject(data);
+      }
+    });
+  }
+}
+
 CPromise.prototype.then = function (onfulfilled, onrejected) {
+  const getNextPromise = nextPromiseGenerator(this.data)(this.status);
   if (this.status === 'fulfilled') {
-    if (typeof onfulfilled === 'function') {
-      let v;
-      try {
-        v = onfulfilled(this.data);
-        if (v instanceof CPromise || v instanceof Promise) {
-          return v;
-        } else {
-          return new CPromise((resolve, reject) => resolve(v));
-        }
-      } catch (e) {
-        return new CPromise((resolve, reject) => reject(e));
-      }
-    } else {
-      return new CPromise((resolve, reject) => resolve(this.data));
-    }
-  } else if (this.status === 'rejected') {
-    if (typeof onrejected === 'function') {
-      let r;
-      try {
-        r = onrejected(this.data);
-        if (r instanceof CPromise || r instanceof Promise) {
-          return r;
-        } else {
-          return new CPromise((resolve, reject) => resolve(r));
-        }
-      } catch (e) {
-        return new CPromise((resolve, reject) => reject(e));
-      }
-    } else {
-      return new CPromise((resolve, reject) => reject(this.data));
-    }
+    return getNextPromise(onfulfilled);
+  } else if (this.status = 'rejected') {
+    return getNextPromise(onrejected);
   } else {
     // TODO
     console.log('pending');
-    return new CPromise((resolve, reject) => {
-      
-    });
+    return new CPromise((resolve, reject) => {});
   }
 };
 
