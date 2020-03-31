@@ -1,16 +1,24 @@
 function CPromise (executor) {
   this.status = 'pending';
   this.data;
+  this.onfulfilledListeners = [];
+  this.onrejectedListeners = [];
 
-  const toggle = (status) => (data) => {
+  const emitter = (handlers) => (data) => {
+    for (let i = 0; i < handlers.length; i++) {
+      handlers[i](data);
+    }
+  };
+  const toggle = (status) => (handler) => (data) => {
     if (this.status === 'pending') {
       // 一次性状态翻转
       this.status = status;
       this.data = data;
+      handler(data);
     }
-  }
-  const resolve = toggle('fulfilled');
-  const reject = toggle('rejected');
+  };
+  const resolve = toggle('fulfilled')(emitter(this.onfulfilledListeners));
+  const reject = toggle('rejected')(emitter(this.onrejectedListeners));
 
   try {
     executor(resolve, reject);
@@ -51,14 +59,22 @@ CPromise.prototype.then = function (onfulfilled, onrejected) {
   } else if (this.status === 'rejected') {
     return getNextPromise(onrejected);
   } else {
-    // TODO
-    console.log('pending');
-    return new CPromise((resolve, reject) => {});
+    return new CPromise((resolve, reject) => {
+      this.onfulfilledListeners.push((value) => {
+        nextPromiseGenerator(value)('fulfilled')(onfulfilled).then(resolve, reject);
+      });
+      this.onrejectedListeners.push((reason) => {
+        nextPromiseGenerator(reason)('rejected')(onrejected).then(resolve, reject);
+      });
+    });
   }
 };
 
 const promise = new CPromise((resolve, reject) => {
-  resolve(1);
+  setTimeout(() => {
+    resolve(1);
+  }, 2000);
+  // resolve(1);
 });
 
 promise
