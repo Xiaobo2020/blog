@@ -48,7 +48,7 @@ CPromise.prototype.then = function (onfulfilled, onrejected) {
   const getNextPromise = nextPromiseGenerator(this.data)(this.status);
   if (this.status === 'fulfilled') {
     return getNextPromise(onfulfilled);
-  } else if (this.status = 'rejected') {
+  } else if (this.status === 'rejected') {
     return getNextPromise(onrejected);
   } else {
     // TODO
