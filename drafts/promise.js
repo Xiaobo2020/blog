@@ -27,6 +27,9 @@ function CPromise (executor) {
 CPromise.prototype.then = function (onfulfilled, onrejected) {
   if (this.status === 'fulfilled') {
     if (typeof onfulfilled === 'function') {
+      if (onfulfilled(this.value) instanceof CPromise) {
+        return onfulfilled(this.value).then();
+      }
       return new CPromise((resolve, reject) => {
         try {
           const v = onfulfilled(this.value);
@@ -40,6 +43,9 @@ CPromise.prototype.then = function (onfulfilled, onrejected) {
     }
   } else if (this.status === 'rejected') {
     if (typeof onrejected === 'function') {
+      if (onrejected() instanceof CPromise) {
+        return onrejected();
+      }
       return new CPromise((resolve, reject) => {
         try {
           const v = onrejected(this.reason);
@@ -61,22 +67,29 @@ CPromise.prototype.then = function (onfulfilled, onrejected) {
 };
 
 const promise = new CPromise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(1);
-  }, 1000);
+  resolve(1);
 });
 
 promise
   .then(
     (res) => {
       console.log('onfulfilled1', res);
-      throw new Error('123');
+      return new CPromise((resolve, reject) => reject('Hello'));
     },
-    (err) => {
-      console.log('onrejected1', err)
-    }
+    (err) => console.log('onrejected1', err)
   )
   .then(
     res => console.log('onfulfilled2', res),
-    err => console.log('onrejected2', err),
+    err => {
+      console.log('onrejected2', err);
+      return new CPromise((resolve, reject) => reject('World'));
+    }
+  )
+  .then(
+    res => console.log('onfulfilled3', res),
+    err => console.log('onrejected3', err),
   );
+
+// onfulfilled1 1
+// onrejected2 Hello
+// onrejected2 World
