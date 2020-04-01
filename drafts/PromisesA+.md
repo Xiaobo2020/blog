@@ -65,6 +65,28 @@ promise2 = promise1.then(onFulfilled, onRejected)
 
 #### Promise Resolution Procedure
 
+**promise resolution procedure**是一个抽象的操作，它接收一个 promise 和一个 value 作为入参，我们将之记作 `[[Resolve]](promise, x)`，如果 `x` 是一个 thenable，在 `x` 的行为至少类似于 promise 的前提下，将 `x` 的状态运用于 `promise`。否则，使用 `x` 作为 fulfill `promise` 的 value。
+
+运行 `[[Resolve]](promise, x)` 将表现为如下步骤：
+
+1. 如果 `promise` 和 `x` 指向同一个对象，那么 `promise` 会以 `TypeError` 作为 reason 来 reject。
+2. 如果 `x` 是一个 promise，则使用它的状态：
+    1. 如果 `x` 是等待状态，那么 `promise` 必须维持等待状态，直到 `x` 的状态变更为 fulfilled 或者 rejected
+    2. 如果或当 `x` 是 fulfilled 状态，那么 `promise` 也以同样的 value 转变为 fulfilled 状态
+    3. 如果或当 `x` 是 rejected 状态，那么 `promise` 也以同样的 reason 转变为 rejected 状态
+3. 如果 `x` 是一个对象或者一个函数：
+    1. 用 `x.then` 定义一个 `then`
+    2. 如果检索 `x.then` 属性导致抛出一个异常 `e`，那么以 `e` 为 reason 将 `promise` 转变为 rejcted 状态
+    3. 如果 `then` 是一个函数， 调用 call 方法，同时将 `x` 作为this，第一个参数是 `resolvePromise`，第二个参数是 `rejectPromise`:
+        1. 如果或当 `resolvePromise` 被执行，并且 value 的值为 `y`，执行 `[[Resolve]](promise, y)`
+        2. 如果或当 `rejectPromise` 被执行，并且 reason 的值为 `r`，以 `r` 为 reason 将 `promise` 变更为 rejected 状态
+        3. `resolvePromise` 或 `rejectPromise` 只能被调用一个，且只能被调用一次，如果调用多次，第一次有效。
+        4. 如果调用 `then` 抛出异常 `e`：
+            1. 如果 `resolvePromise` 或者 `rejectPromise` 被调用过了，那么忽略异常
+            2. 否则将 `e` 作为 reason 将 `promise` 的状态变更为 rejected；
+    4. 如果 `then` 不是一个函数，以 `x` 为 value 将 `promise` 状态变更为 fulfilled；
+4. 如果 `x` 不是一个对象或者函数，以 `x` 为 value 将 `promise` 状态变更为 fulfilled;
+
 ## Link
 
 + [上一篇：**Redux源码 —— createStore**](../Redux/createStore.md)
