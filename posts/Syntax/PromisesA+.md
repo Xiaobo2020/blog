@@ -2,6 +2,12 @@
 
 > 2020.04.01
 
+### 为什么要翻译？
+
++ 首先有能力的还是要去读一下[原版 Promise A+ 标准规范](https://promisesaplus.com/#point-58)。
++ 其次翻译的目的单纯是为了加深自己对于 Promise 的理解。
++ 最后附带自己实现的[Promises源码](../../sources/promise.js)（通过promises-aplus-tests，符合标准规范）
+
 ### 术语
 
 1. "promise" 是具有 `then` 方法的对象或函数，其行为遵守本规范。
