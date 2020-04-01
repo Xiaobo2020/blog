@@ -77,3 +77,4 @@ for (let i = 0; i < listeners,length; i++) {
 ## Link
 
 + [上一篇：**事件循环机制 —— Event Loop**](../Others/EventLoop.md)
++ [下一篇：**Promise A+规范（翻译）**](../Syntax/PromisesA+.md)
