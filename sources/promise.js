@@ -25,6 +25,13 @@ function CPromise (executor) {
 
 const procedureGenerator = (resolve, reject) => (promise2, x) => {
   const promiseResolutionProcedure = procedureGenerator(resolve, reject);
+  let alreadyTransition = false;
+  const testRunner = (handler) => {
+    if (!alreadyTransition) {
+      alreadyTransition = true;
+      handler();
+    }
+  }
   if (promise2 === x) {
     reject(new TypeError(x));
   } else if (x instanceof CPromise || x instanceof Promise) {
@@ -33,33 +40,23 @@ const procedureGenerator = (resolve, reject) => (promise2, x) => {
       r => reject(r),
     );
   } else if (typeof x === 'function' || (typeof x === 'object' && x !== null)) {
-    let alreadyTransition = false;
     try {
       const then = x.then;
       if (typeof then === 'function') {
         then.call(
           x,
           y => {
-            if (!alreadyTransition) {
-              alreadyTransition = true;
-              promiseResolutionProcedure(promise2, y);
-            }
+            testRunner(() => promiseResolutionProcedure(promise2, y))
           },
           r => {
-            if (!alreadyTransition) {
-              alreadyTransition = true;
-              reject(r);
-            }
+            testRunner(() => reject(r));
           },
         );
       } else {
         resolve(x);
       }
     } catch (e) {
-      if (!alreadyTransition) {
-        alreadyTransition = true;
-        reject(e);
-      }
+      testRunner(() => reject(e));
     }
   } else {
     resolve(x);
