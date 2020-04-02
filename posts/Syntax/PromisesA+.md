@@ -96,3 +96,4 @@ promise2 = promise1.then(onFulfilled, onRejected)
 ## Link
 
 + [上一篇：**Redux源码 —— createStore**](../Redux/createStore.md)
++ [下一篇：**redux-thunk源码分析**](../Redux/redux-thunk.md)
