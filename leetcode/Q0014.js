@@ -35,7 +35,23 @@ var longestCommonPrefix = function(strs) {
   }).join('');
 };
 
+var longestCommonPrefix2 = function(strs) {
+  if (strs.length === 0) {
+    return '';
+  }
+  let str = strs[0];
+  let i = 0;
+  for (; i < str.length; i++) {
+    const tag = strs.reduce((isSame, c) => {
+      return isSame && str[i] === c[i];
+    }, true);
+    if (!tag) {
+      break
+    }
+  }
+  return str.slice(0, i);
+}
 
 const strs = ["flower","flow","flight"];
 
-console.log(longestCommonPrefix(strs));
+console.log(longestCommonPrefix2(strs));
