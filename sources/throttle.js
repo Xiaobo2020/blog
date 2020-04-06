@@ -10,3 +10,16 @@ function throttling (handler, wait) {
     }, wait);
   }
 }
+
+// 创建一个节流的click函数
+const click = throttling(function (text) {
+  console.log('click', text);
+}, 1000);
+
+click('first');
+click('second');
+setTimeout(() => {
+  click('third after 1500ms');
+}, 1500);
+// click first
+// click third after 1500ms
