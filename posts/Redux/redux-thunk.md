@@ -80,3 +80,4 @@ api.dispatch(); // enhancer.dispatch ...
 ## Link
 
 + [上一篇：**Promise A+规范（翻译）**](../Syntax/PromisesA+.md)
++ [下一篇：**树的遍历搜索**](../Others/树的遍历搜索.md)
