@@ -2,7 +2,8 @@
 
 > 2020.04.12
 
-### CommonJS
+### 分类
+#### CommonJS
 
 NodeJS 就是一个基于 V8 引擎，事件驱动 I/O 的服务端JS运行环境，在2009年刚推出时，它就实现了一套名为 `CommonJS` 的模块化规范。
 
@@ -27,7 +28,7 @@ module.exports = m;
 + **moduleA.js** 代表的模块通过 `require` 函数，加载了 `./moduleB.js` 模块，使用定时器延迟1s打印 **moduleB** 的结果。
 + **moduleB** 代表的模块相对比较简单，创建一个记录当前时间的变量，并通过 `module.exports` 导出到外部使用。
 
-### AMD
+#### AMD
 
 除了NodeJS，另一个常用JS运行环境就是浏览器了。由于浏览器本身的属性，它发展出了AMD、SystemJS等适合浏览器的模块化规范。
 
@@ -56,7 +57,7 @@ define(function(require) {
 
 如果想要使用 AMD 规范，我们还需要添加一个符合 AMD 规范的加载器脚本在⻚面中，符合 AMD 规范实现 的库很多，比较有名的就是 **`RequireJS`**。
 
-### ESModule
+#### ESModule
 
 不管是 CommonJS 还是 AMD 规范，他们都有这样几个特点：
 
@@ -80,5 +81,12 @@ const m = new Date().getTime();
 export default m;
 ```
 
+### 编译和打包
+
+虽然ESModule是JavaScrpt语言层面上的模块化规范，也是未来一定会趋于统一的规范，但是 web 端受限于用户浏览器版本，暂时还无法随心所欲的使用JS的最新特性，所以兼容性的问题亟待解决。社区中涌现了各式各样的编译工具，最常用的就是 `babel` 了。
+
+然而，就算使用了 babel 来解析编译 ESModule 规范的代码，最终生成的还是带有 `require` 和 `exports` 的 CommonJS 规范的代码，还是无法直接运行在浏览器中，所以这个时候还需一个步骤 —— **打包（bundle）**，用来抹平不同运行环境的模块化定义内部细节，实现无论是AMD还是CommonJS规范的模块，打包之后都能直接运行在Node或WEB中。
+
 ## Link
 
++ [上一篇：**树的遍历搜索**](../Others/树的遍历搜索.md)
