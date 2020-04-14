@@ -1,13 +1,38 @@
-+ 强缓存、弱缓存
-+ react-redux - hoc、反向继承
+## TODO
+
++ [] 浏览器的缓存原理（强缓存、若缓存）
++ [] 跨域问题的原因、解决方案（jsonp实现）
++ [] redux原理、实现、中间件的实现
++ [] redux-thunk的实现原理，异步action
++ [] react-redux的原理（context、hoc、反向继承）
++ [] Fiber原理、事件调度（requestIdleCallback）
++ [] hooks使用及原理
++ [] React生命周期
++ [] React性能优化
++ [] 防抖和节流
++ [] promise的使用和实现
++ [] this
++ [] 闭包
++ [] 箭头函数
++ [] 原型链、继承
++ [] 快速排序算法原理及实现
++ [] 手写ajax
++ [] DNS解析方式
++ [] http1、http2、https等基本概念和区别
++ [] viewport、meta、manifest
++ [] 懒加载
++ [] 优化页面：首屏渲染时间、观察内存占用
++ [] 数组的判断方法
++ [] instanceof
++ [] webpack plugin的实现与应用
++ [] 安全（xss、csrf）
++ [] 跨站脚本注入和请求伪造
++ [] 装饰器
+
+## TMP
+
 + mobx - 装饰器
-+ 快速排序
-+ 同源策略
-+ https
-+ docker配置开发环境
 + 根据id获取dom，根据class获取dom
-+ Context 原理
-+ Fiber 原理
 
 ## 文件上传
 
