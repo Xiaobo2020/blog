@@ -1,7 +1,13 @@
 ## TODO
 
-+ [] 浏览器的缓存原理（强缓存、弱缓存、GMT时间）
++ [x] 浏览器的缓存原理（强缓存、弱缓存、GMT时间）
++ [] DNS解析方式
++ [] 手写ajax
++ [] viewport、meta、manifest
 + [] 跨域问题的原因、解决方案（jsonp实现）
++ [] 安全（xss、csrf）
++ [] 跨站脚本注入和请求伪造
++ [] http1、http2、https等基本概念和区别
 + [] redux原理、实现、中间件的实现
 + [] redux-thunk的实现原理，异步action
 + [] react-redux的原理（context、hoc、反向继承）
@@ -9,25 +15,19 @@
 + [] hooks使用及原理
 + [] React生命周期
 + [] React性能优化
-+ [] 防抖和节流
 + [] promise的使用和实现
 + [] this
 + [] 闭包
 + [] 箭头函数
 + [] 原型链、继承
-+ [] 快速排序算法原理及实现
-+ [] 手写ajax
-+ [] DNS解析方式
-+ [] http1、http2、https等基本概念和区别
-+ [] viewport、meta、manifest
-+ [] 懒加载
-+ [] 优化页面：首屏渲染时间、观察内存占用
++ [] 装饰器
++ [] 防抖和节流
 + [] 数组的判断方法
 + [] instanceof
++ [] 快速排序算法原理及实现
++ [] 懒加载
++ [] 优化页面：首屏渲染时间、观察内存占用
 + [] webpack plugin的实现与应用
-+ [] 安全（xss、csrf）
-+ [] 跨站脚本注入和请求伪造
-+ [] 装饰器
 
 ## TMP
 
