@@ -1,5 +1,7 @@
 ## CDN原理
 
+> 2020.04.15
+
 ### 定义
 
 CDN（Content Deliver Network）即内容分发网络，常用于提高资源请求速度。
