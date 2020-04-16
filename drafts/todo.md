@@ -5,7 +5,7 @@
 + [x] DNS解析逻辑
 + [x] cdn原理
 + [x] 网络连接的建立与终止：三次握手和四次挥手
-+ [ ] http和https的区别
++ [x] http和https的区别
 + [x] https有什么好处，如何做到安全
 + [ ] http/1.0、http/1.1、http/2.0简单了解各个特点
 + [ ] http状态码
