@@ -8,7 +8,7 @@
 + [x] http和https的区别
 + [x] https有什么好处，如何做到安全
 + [ ] http/1.0、http/1.1、http/2.0简单了解各个特点
-+ [ ] http状态码
++ [x] http状态码
 + [ ] TCP和UDP的区别
 + [x] 跨域问题的原因、解决方案
 + [ ] 安全（xss、csrf、ssrf）
