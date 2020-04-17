@@ -47,9 +47,33 @@ server向client发送数字证书，client用CA的公钥对数字签名进行解
 3. client -> server: 客户端使用CA的公钥进行解密得到server的公钥，使用公钥发送自己的对称加密密钥
 4. server -> client: 服务端使用自己的私钥进行解密，获得客户端的对称加密的密钥，进行数据安全传输
 
-## http2特点
+## 各版本http
 
-1. 二进制传输
-2. 头部压缩
-3. 多路复用
-4. 服务器推送：在第一次返回index.html的同时，分析页面资源依赖，主动推送index.js、index.css等资源；关联push cache
+### http/1.0
+
++ 短链接：每次发送一份数据，都需要三次握手
++ expires
+
+### http/1.1
+
++ 长链接: 建立一次连接后，数据都在这个连接上处理，知道关闭
++ cache-control
++ 新增host字段
++ 管线化的概念，即多个请求同时写入一个套接字（IP:Port）中
+
+## http/2
+
+[demo](https://http2.akamai.com/demo)
+
++ 二进制传输: 把报文段又细分为帧为单位，由二进制数据组成，不再是文本格式
++ 头部压缩
++ 多路复用，合并多个请求的的优势不再了，因为不需要了
+    + 雪碧图：多张图片合成一个图片
+    + 内联inline：图片的原始数据嵌入css的url中
+    + 合并多个文件：一个请求下载多个js
+    + 分片：请求分配到多个主机上，避免套接字堵塞
++ 服务器推送，请求html，但是把css和js都给了，没想那么快，但是给的实在是太多了
+    + preload
+        + 静态资源：`<link rel="preload" href="push.css" as="style">`
+        + http头：`Link: <push.css>; rel=preload; as=style`
+    + 推送资源，主要用于cdn
