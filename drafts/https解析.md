@@ -46,3 +46,10 @@ server向client发送数字证书，client用CA的公钥对数字签名进行解
 2. server -> client: 服务端发送包含自身公钥的数字证书
 3. client -> server: 客户端使用CA的公钥进行解密得到server的公钥，使用公钥发送自己的对称加密密钥
 4. server -> client: 服务端使用自己的私钥进行解密，获得客户端的对称加密的密钥，进行数据安全传输
+
+## http2特点
+
+1. 二进制传输
+2. 头部压缩
+3. 多路复用
+4. 服务器推送：在第一次返回index.html的同时，分析页面资源依赖，主动推送index.js、index.css等资源；关联push cache
