@@ -44,7 +44,7 @@
 + [ ] 文件、图片延迟加载
 + [x] 手写AJAX
 + [x] 手写JSONP（promise版本），window上挂的函数如何避免重名
-+ [ ] promise的使用和实现
++ [x] promise的使用和实现（简版）
 + [ ] async/await和promise的性能差异
 + [ ] this
 + [ ] 闭包
