@@ -42,8 +42,8 @@
 <!-- JS相关 -->
 + [ ] SPA组件懒加载
 + [ ] 文件、图片延迟加载
-+ [ ] 手写ajax
-+ [ ] 手写JSONP（promise版本），window上挂的函数如何避免重名
++ [x] 手写AJAX
++ [x] 手写JSONP（promise版本），window上挂的函数如何避免重名
 + [ ] promise的使用和实现
 + [ ] async/await和promise的性能差异
 + [ ] this
