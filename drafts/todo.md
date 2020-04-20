@@ -23,8 +23,8 @@
 + [ ] 前端性能优化（网络、浏览器渲染、框架）
 
 <!-- react相关 -->
-+ [ ] redux原理、实现、中间件的实现
-+ [ ] redux-thunk的实现原理，异步action
++ [x] redux原理、实现、中间件的实现
++ [x] redux-thunk的实现原理，异步action
 + [ ] react-redux的原理（context、hoc、反向继承）
 + [ ] Fiber原理、事件调度（requestIdleCallback）
 + [ ] hooks使用及原理
@@ -32,7 +32,7 @@
 + [ ] 为什么请求要在useEffect中？放在里面和外面有什么区别？内部如何使用async/await
 + [ ] useLayoutEffect和useEffect具体执行时机
 + [ ] 手写一个时间选择组件，先设计props，外部组件如何使用（组件封装）
-+ [ ] React生命周期，包括新旧
++ [ ] React生命周期，包括新旧[官网](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 + [ ] React性能优化
 + [ ] PureComponent和Component的区别
 + [ ] setState原理
