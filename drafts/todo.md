@@ -72,7 +72,7 @@
 + [ ] 居中方式
 + [ ] position有哪些，作用
 + [ ] flex布局（justify-content和align-item）
-+ [ ] BFC是什么
++ [x] BFC是什么
 + [ ] 盒子模型
 + [ ] 清除浮动
 
