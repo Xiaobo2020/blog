@@ -66,7 +66,7 @@
 + [ ] CommonJS和ES6模块化有什么区别，设计一个方法，使CommonJS导出的模块也能改变其内部变量
 + [ ] forOf原理
 + [ ] 实现深拷贝，能处理引用类型，变量类型判断、创建各种变量方法
-+ [ ] e.target和e.currentTarget
++ [x] e.target和e.currentTarget，事件委托
 
 <!-- css相关 -->
 + [ ] 居中方式
@@ -80,6 +80,7 @@
 + [ ] viewport、meta、manifest
 + [ ] document.ready、window.onload
 + [ ] onload怎么使用
++ [ ] 如何避免重绘
 
 <!-- 工程化相关 -->
 + [ ] webpack plugin的实现与应用
@@ -88,3 +89,20 @@
 
 <!-- 算法相关 -->
 + [x] 快速排序算法原理及实现
+
+
+<!-- 个人项目 -->
++ [ ] React
++ [ ] Redux
++ [ ] TypeScript
++ [ ] Vue
++ [ ] Vuex
++ [ ] Vue Router
++ [ ] Git
++ [ ] Electron
++ [ ] 路由原理
++ [ ] 访问权限控制
++ [ ] node进程间通信
++ [ ] 单元测试
++ [ ] 文件下载
++ [ ] 异步并发控制
