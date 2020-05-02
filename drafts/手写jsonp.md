@@ -24,7 +24,7 @@ function jsonp ({
     const urlSymbol = url.indexOf('?') === -1 ? '?' : '&';
     const urlParams = formateData({
       ...params,
-      callback,
+      callback: `${callback}_${id}`,
     });
     script.scr = url + urlSymbol + urlParams;
     document.appendChild(script);
