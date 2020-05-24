@@ -90,3 +90,4 @@ export default m;
 ## Link
 
 + [上一篇：**树的遍历搜索**](../Others/树的遍历搜索.md)
++ [下一篇：**简版Promise及相关方法实现**](../DIY/简版Promise实现.md)
