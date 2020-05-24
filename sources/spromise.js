@@ -1,3 +1,10 @@
+/**
+ * @description 简版的Promise实现
+ * @function then
+ * @function resolve
+ * @function reject
+ * @function all
+ */
 const PENDING = 'PENDING';
 const RESOLVED = 'RESOLVED';
 const REJECTED = 'REJECTED';
@@ -59,13 +66,28 @@ SPromise.prototype.then = function (onResolve, onReject) {
   });
 }
 
+SPromise.resolve = function (value) {
+  return new SPromise((resolve, reject) => {
+    resolve(value);
+  })
+};
+
+SPromise.reject = function (reason) {
+  return new SPromise((resolve, reject) => {
+    reject(reason);
+  })
+};
+
 SPromise.all = function (tasks) {
+  if (!Array.isArray(tasks)) {
+    return SPromise.reject('期望参数为数组');
+  }
   const result = [];
   let count = 0;
   return new SPromise((resolve, reject) => {
     // 判断数组方法
     for (let i = 0; i < tasks.length; i++) {
-      tasks[i].then(
+      SPromise.resolve(tasks[i]).then(
         v => {
           result[i] = v;
           count++;

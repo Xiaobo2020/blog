@@ -68,15 +68,34 @@ SPromise.prototype.then = function (onResolve, onReject) {
 };
 ```
 
+then和reject方法
+```javascript
+SPromise.resolve = function (value) {
+  return new SPromise((resolve, reject) => {
+    resolve(value);
+  })
+};
+
+SPromise.reject = function (reason) {
+  return new SPromise((resolve, reject) => {
+    reject(reason);
+  })
+};
+```
+
 all方法
 ```javascript
 SPromise.all = function (tasks) {
+  if (!Array.isArray(tasks)) {
+    // 非数组参数异常
+    return SPromise.reject(tasks);
+  }
   const result = [];
   let count = 0;
   return new SPromise((resolve, reject) => {
     // 判断数组类型
     for (let i = 0; i < tasks.length; i++) {
-      tasks[i].then(
+      SPromise.resolve(tasks[i]).then(
         v => {
           result[i] = v;
           count++;
